@@ -139,10 +139,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="course_oop_1.cpp" />
+    <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="Figure.h" />
+    <ClInclude Include="Rectangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

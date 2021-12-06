@@ -18,8 +18,34 @@
     <ClCompile Include="course_oop_1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
