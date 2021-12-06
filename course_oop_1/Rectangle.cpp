@@ -2,10 +2,10 @@
 
 void Rectangle::draw(RenderWindow* window)
 {
-	RectangleShape rectangle;
-	rectangle.setSize(size);
-	rectangle.setFillColor(color);
-	rectangle.setPosition(Vector2f(10, 10));
+	window->draw(*shape);
+}
 
-	window->draw(rectangle);
+void Rectangle::move(Vector2f velocity)
+{
+	shape->move(velocity);
 }

@@ -21,6 +21,8 @@ public:
 
 	void draw(RenderWindow* window);
 
+	bool hasFigures();
+
 private:
 	vector<IFigure*> _figures;
 };

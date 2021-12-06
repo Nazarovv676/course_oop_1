@@ -9,6 +9,8 @@ class IFigure
 public:
 	virtual ~IFigure() {}
 
+	virtual void move(Vector2f velocity) = 0;
+
 	virtual void draw(RenderWindow* window) = 0;
 };
 
