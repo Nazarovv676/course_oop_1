@@ -33,5 +33,7 @@ public:
     virtual void draw(RenderWindow* window) override;
 
 	virtual void move(Vector2f velocity) override;
+
+	virtual Shape* getShape() override;
 };
 

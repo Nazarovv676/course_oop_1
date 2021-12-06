@@ -7,13 +7,20 @@ using namespace std;
 
 void Application::run()
 {
-	RenderWindow window(VideoMode(500, 700), "SFML Application");
-	window.setFramerateLimit(120);
+	const unsigned WINDOW_WIDTH = 500;
+	const unsigned WINDOW_HEIGHT = 500;
+
+	const int framerateLimit = 120;
+
+	const float movementSpeed = 100.f;
+
+	RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML Application", Style::Close);
+	window.setFramerateLimit(framerateLimit);
+
+	controller.setScreenSize(Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
 
 	float dt;
 	Clock dt_clock;
-
-	const float movementSpeed = 100.f;
 
 	Vector2f velocity;
 
@@ -59,14 +66,10 @@ void Application::run()
 		if (Keyboard::isKeyPressed(Keyboard::Right)) {
 			velocity.x += movementSpeed * dt;
 		}
-		
-		IFigure* currentFigure = controller.currentFigure();
 
-		if (currentFigure != nullptr) {
-			currentFigure->move(velocity);
-		}
+		controller.maybeMove(velocity);
 
-		// Colision
+		// Collision
 
 		// Render
 

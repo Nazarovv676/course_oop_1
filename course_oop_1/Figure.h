@@ -12,5 +12,7 @@ public:
 	virtual void move(Vector2f velocity) = 0;
 
 	virtual void draw(RenderWindow* window) = 0;
+
+	virtual Shape* getShape() = 0;
 };
 

@@ -9,3 +9,8 @@ void Rectangle::move(Vector2f velocity)
 {
 	shape->move(velocity);
 }
+
+Shape* Rectangle::getShape()
+{
+	return shape;
+}

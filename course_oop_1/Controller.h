@@ -23,7 +23,16 @@ public:
 
 	bool hasFigures();
 
+	void maybeMove(Vector2f velocity);
+
+	void setScreenSize(Vector2u size);
+
 private:
 	vector<IFigure*> _figures;
+	Vector2u screenSize;
+
+	void resolveScreenBounds();
+
+	void resolveFiguresBounds(Vector2f lastMovementVelocity);
 };
 
