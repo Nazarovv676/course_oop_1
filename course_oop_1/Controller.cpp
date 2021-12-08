@@ -39,6 +39,16 @@ void Controller::setScreenSize(Vector2u size)
 	screenSize = size;
 }
 
+void Controller::addRandFigure()
+{
+	int _sizeDemention = 10 + rand() % 30;
+	_figures.push_back(new Rectangle(
+		Vector2f(_sizeDemention, _sizeDemention),
+		Vector2f(screenSize.x / 2 - _sizeDemention / 2, screenSize.y / 2 - _sizeDemention / 2),
+		Color(rand() % 255, rand() % 255, rand() % 255)
+	));
+}
+
 void Controller::resolveScreenBounds()
 {
 	Shape* shape = currentFigure()->getShape();
@@ -67,9 +77,41 @@ void Controller::resolveFiguresBounds(Vector2f lastMovementVelocity)
 
 		FloatRect intersect;
 		currentFigureBounds.intersects(otherFigureBounds, intersect);
-		Vector2f position = shape->getPosition();
-		if (intersect.height != 0 && intersect.width != 0) {
-			shape->move(Vector2f(-lastMovementVelocity.x, -lastMovementVelocity.y));
+
+		float moveToLeft = 0;
+		float moveToTop = 0;
+		float moveToRight = 0;
+		float moveToBottom = 0;
+		if (intersect.top == otherFigureBounds.top) {
+			moveToTop = intersect.height;
+		}
+		if (intersect.left == otherFigureBounds.left) {
+			moveToLeft = intersect.width;
+		}
+		if (intersect.top + intersect.height == otherFigureBounds.top + otherFigureBounds.height) {
+			moveToBottom = intersect.height;
+		}
+		if (intersect.left + intersect.width == otherFigureBounds.left + otherFigureBounds.width) {
+			moveToRight = intersect.width;
+		}
+
+		float moveVertical = max(moveToBottom, moveToTop);
+		float moveHorisontal = max(moveToRight, moveToLeft);
+
+
+		if (moveVertical < moveHorisontal) {
+			if (moveToTop > moveToBottom) {
+				moveVertical = -moveVertical;
+			}
+
+			shape->move(Vector2f(0, moveVertical));
+		}
+		else {
+			if (moveToLeft > moveToRight) {
+				moveHorisontal = -moveHorisontal;
+			}
+
+			shape->move(Vector2f(moveHorisontal, 0));
 		}
 	}
 }

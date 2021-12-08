@@ -11,12 +11,17 @@ class Rectangle : virtual public IFigure
 	Vector2f size;
 	Color color;
 	RectangleShape* shape;
+	Vector2f position;
 public:
 	Rectangle() {
 		createShape();
 	};
 
 	Rectangle(Vector2f size, Color color) : size(size), color(color) {
+		createShape();
+	}
+
+	Rectangle(Vector2f size, Vector2f position, Color color) : size(size), position(position), color(color) {
 		createShape();
 	}
 
@@ -28,6 +33,7 @@ public:
 		shape = new RectangleShape();
 		shape->setSize(size);
 		shape->setFillColor(color);
+		shape->setPosition(position);
 	}
 
     virtual void draw(RenderWindow* window) override;
@@ -35,5 +41,7 @@ public:
 	virtual void move(Vector2f velocity) override;
 
 	virtual Shape* getShape() override;
+
+	virtual void onTouch() override;
 };
 

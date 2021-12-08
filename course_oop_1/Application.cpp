@@ -37,7 +37,7 @@ void Application::run()
 
 			case Event::KeyPressed: 
 				if (event.key.code == Keyboard::R) {
-					controller.addFigure(new Rectangle(Vector2f(30, 30), Color(rand() % 255, rand() % 255, rand() % 255)));
+					controller.addRandFigure();
 				}
 				break;
 

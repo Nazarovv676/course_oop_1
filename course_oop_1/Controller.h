@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "Figure.h"
+#include "Rectangle.h"
 
 using namespace std;
 
@@ -26,6 +27,8 @@ public:
 	void maybeMove(Vector2f velocity);
 
 	void setScreenSize(Vector2u size);
+
+	void addRandFigure();
 
 private:
 	vector<IFigure*> _figures;

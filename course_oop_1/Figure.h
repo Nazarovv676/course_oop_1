@@ -14,5 +14,7 @@ public:
 	virtual void draw(RenderWindow* window) = 0;
 
 	virtual Shape* getShape() = 0;
+
+	virtual void onTouch() = 0;
 };
 
