@@ -1,5 +1,7 @@
 #include "Controller.h"
 
+const unsigned FIGURE_SIZE = 30;
+
 IFigure* Controller::currentFigure()
 {
 	if (hasFigures()) {
@@ -29,8 +31,8 @@ void Controller::maybeMove(Vector2f velocity)
 {
 	if (hasFigures()) {
 		currentFigure()->move(velocity);
-		resolveScreenBounds();
 		resolveFiguresBounds(velocity);
+		resolveScreenBounds();
 	}
 }
 
@@ -41,10 +43,9 @@ void Controller::setScreenSize(Vector2u size)
 
 void Controller::addRandFigure()
 {
-	int _sizeDemention = 10 + rand() % 30;
 	_figures.push_back(new Rectangle(
-		Vector2f(_sizeDemention, _sizeDemention),
-		Vector2f(screenSize.x / 2 - _sizeDemention / 2, screenSize.y / 2 - _sizeDemention / 2),
+		Vector2f(FIGURE_SIZE, FIGURE_SIZE),
+		Vector2f(screenSize.x / 2 - FIGURE_SIZE / 2, screenSize.y / 2 - FIGURE_SIZE / 2),
 		Color(rand() % 255, rand() % 255, rand() % 255)
 	));
 }
@@ -112,6 +113,10 @@ void Controller::resolveFiguresBounds(Vector2f lastMovementVelocity)
 			}
 
 			shape->move(Vector2f(moveHorisontal, 0));
+		}
+
+		if (intersect.top != 0 && intersect.left != 0) {
+			currentFigure()->onTouch();
 		}
 	}
 }
