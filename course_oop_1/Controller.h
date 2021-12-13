@@ -30,9 +30,13 @@ public:
 
 	void setScreenSize(Vector2u size);
 
-	void addRandFigure();
+	void changeRandomly();
+
+	void addRandomly();
 
 	void swapCurrent();
+
+	void changeColorRandomly();
 
 private:
 	vector<IFigure*> _figures;

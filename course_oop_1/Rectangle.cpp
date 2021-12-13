@@ -16,7 +16,7 @@ Shape* Rectangle::getShape()
 	return shape;
 }
 
-void Rectangle::onTouch()
+void Rectangle::changeColorRandomly()
 {
 	color = Color(rand() % 255, rand() % 255, rand() % 255);
 	shape->setFillColor(color);

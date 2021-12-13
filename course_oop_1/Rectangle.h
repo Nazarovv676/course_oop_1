@@ -50,7 +50,7 @@ public:
 
 	virtual Shape* getShape() override;
 
-	virtual void onTouch() override;
+	virtual void changeColorRandomly() override;
 
 	virtual Vector2f getSize() {
 		return size;

@@ -36,11 +36,14 @@ void Application::run()
 				break;
 
 			case Event::KeyPressed: 
-				if (event.key.code == Keyboard::R) {
-					controller.addRandFigure();
+				if (event.key.code == Keyboard::C) {
+					controller.changeRandomly();
+				}
+				if (event.key.code == Keyboard::A) {
+					controller.addRandomly();
 				}
 				if (event.key.code == Keyboard::S) {
-					controller.swapCurrent();
+					controller.changeColorRandomly();
 				}
 				break;
 

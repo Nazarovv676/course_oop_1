@@ -16,7 +16,7 @@ Shape* Triangle::getShape()
 	return shape;
 }
 
-void Triangle::onTouch()
+void Triangle::changeColorRandomly()
 {
 	color = Color(rand() % 255, rand() % 255, rand() % 255);
 	shape->setFillColor(color);

@@ -41,9 +41,9 @@ void Controller::setScreenSize(Vector2u size)
 	screenSize = size;
 }
 
-void Controller::addRandFigure()
+void Controller::changeRandomly()
 {
-	IFigure* figure;
+	IFigure* figure = nullptr;
 	switch (rand() % 2)
 	{
 	case 0:
@@ -73,7 +73,44 @@ void Controller::addRandFigure()
 	default:
 		break;
 	}
+	if (_figures.size() > 0)
+		_figures.back() = figure;
+	else
+		_figures.push_back(figure);
+}
 
+void Controller::addRandomly()
+{
+	IFigure* figure = nullptr;
+	switch (rand() % 2)
+	{
+	case 0:
+		figure = new Rectangle(
+			Vector2f(FIGURE_SIZE, FIGURE_SIZE),
+			getScreenCenter(),
+			generateRandColor()
+		);
+		break;
+
+	case 1:
+		figure = new Circle(
+			FIGURE_SIZE / 2,
+			getScreenCenter(),
+			generateRandColor()
+		);
+		break;
+
+	case 2:
+		figure = new Triangle(
+			FIGURE_SIZE / 2,
+			getScreenCenter(),
+			generateRandColor()
+		);
+		break;
+
+	default:
+		break;
+	}
 	_figures.push_back(figure);
 }
 
@@ -100,6 +137,11 @@ void Controller::swapCurrent()
 	}
 	_figures.back() = figure;
 	delete current;
+}
+
+void Controller::changeColorRandomly()
+{
+	currentFigure()->changeColorRandomly();
 }
 
 void Controller::resolveScreenBounds()
@@ -168,7 +210,7 @@ void Controller::resolveFiguresBounds(Vector2f lastMovementVelocity)
 		}
 
 		if (intersect.top != 0 && intersect.left != 0) {
-			currentFigure()->onTouch();
+			swapCurrent();
 		}
 	}
 }

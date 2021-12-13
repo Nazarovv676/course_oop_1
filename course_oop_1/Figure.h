@@ -15,7 +15,7 @@ public:
 
 	virtual Shape* getShape() = 0;
 
-	virtual void onTouch() = 0;
+	virtual void changeColorRandomly() = 0;
 
 	virtual Vector2f getSize() = 0;
 };

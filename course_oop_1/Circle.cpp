@@ -16,7 +16,7 @@ Shape* Circle::getShape()
 	return shape;
 }
 
-void Circle::onTouch()
+void Circle::changeColorRandomly()
 {
 	color = Color(rand() % 255, rand() % 255, rand() % 255);
 	shape->setFillColor(color);
