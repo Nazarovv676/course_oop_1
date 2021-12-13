@@ -62,6 +62,14 @@ void Controller::addRandFigure()
 		);
 		break;
 
+	case 2:
+		figure = new Triangle(
+			FIGURE_SIZE / 2,
+			getScreenCenter(),
+			generateRandColor()
+		);
+		break;
+
 	default:
 		break;
 	}
@@ -73,7 +81,7 @@ void Controller::swapCurrent()
 {
 	IFigure* figure = nullptr;
 	IFigure* current = currentFigure();
-	switch (rand() % 2)
+	switch (rand() % 3)
 	{
 	case 0:
 		figure = new Rectangle(current);
@@ -81,6 +89,10 @@ void Controller::swapCurrent()
 
 	case 1:
 		figure = new Circle(current);
+		break;
+
+	case 2:
+		figure = new Triangle(current);
 		break;
 
 	default:

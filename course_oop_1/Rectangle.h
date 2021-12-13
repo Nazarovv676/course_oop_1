@@ -26,8 +26,7 @@ public:
 	}
 
 	Rectangle(IFigure* figure) {
-		FloatRect bounds = figure->getShape()->getGlobalBounds();
-		size = Vector2f(bounds.left + bounds.width - bounds.left, bounds.top + bounds.height - bounds.top);
+		size = figure->getSize();
 		position = figure->getShape()->getPosition();
 		color = figure->getShape()->getFillColor();
 
@@ -52,5 +51,9 @@ public:
 	virtual Shape* getShape() override;
 
 	virtual void onTouch() override;
+
+	virtual Vector2f getSize() {
+		return size;
+	};
 };
 

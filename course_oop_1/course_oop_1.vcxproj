@@ -145,6 +145,7 @@
     <ClCompile Include="course_oop_1.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Triangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

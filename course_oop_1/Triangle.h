@@ -3,11 +3,10 @@
 #include <SFML/Graphics.hpp>
 
 #include "Figure.h"
-#include "Triangle.h"
 
 using namespace sf;
 
-class Circle : public IFigure
+class Triangle : public IFigure
 {
 	float radius;
 	Color color;
@@ -15,19 +14,19 @@ class Circle : public IFigure
 	Vector2f position;
 
 public:
-	Circle() {
+	Triangle() {
 		createShape();
 	};
 
-	Circle(float radius, Color color) : radius(radius), color(color) {
+	Triangle(float radius, Color color) : radius(radius), color(color) {
 		createShape();
 	}
 
-	Circle(float radius, Vector2f position, Color color) : radius(radius), position(position), color(color) {
+	Triangle(float radius, Vector2f position, Color color) : radius(radius), position(position), color(color) {
 		createShape();
 	}
 
-	Circle(IFigure* figure) {
+	Triangle(IFigure* figure) {
 		radius = figure->getSize().x / 2;
 		position = figure->getShape()->getPosition();
 		color = figure->getShape()->getFillColor();
@@ -35,13 +34,13 @@ public:
 		createShape();
 	}
 
-	virtual ~Circle() {
+	virtual ~Triangle() {
 		delete shape;
 	}
 
 	void createShape() {
-		shape = new CircleShape();
-		shape->setRadius(radius);
+		shape = new CircleShape(radius, 3);
+
 		shape->setFillColor(color);
 		shape->setPosition(position);
 	}
