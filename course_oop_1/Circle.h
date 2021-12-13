@@ -6,46 +6,47 @@
 
 using namespace sf;
 
-class Rectangle : virtual public IFigure
+class Circle : public IFigure
 {
-	Vector2f size;
+	float radius;
 	Color color;
-	RectangleShape* shape;
+	CircleShape* shape;
 	Vector2f position;
+
 public:
-	Rectangle() {
+	Circle() {
 		createShape();
 	};
 
-	Rectangle(Vector2f size, Color color) : size(size), color(color) {
+	Circle(float radius, Color color) : radius(radius), color(color) {
 		createShape();
 	}
 
-	Rectangle(Vector2f size, Vector2f position, Color color) : size(size), position(position), color(color) {
+	Circle(float radius, Vector2f position, Color color) : radius(radius), position(position), color(color) {
 		createShape();
 	}
 
-	Rectangle(IFigure* figure) {
+	Circle(IFigure* figure) {
 		FloatRect bounds = figure->getShape()->getGlobalBounds();
-		size = Vector2f(bounds.left + bounds.width - bounds.left, bounds.top + bounds.height - bounds.top);
+		radius = (bounds.left + bounds.width - bounds.left) / 2;
 		position = figure->getShape()->getPosition();
 		color = figure->getShape()->getFillColor();
 
 		createShape();
 	}
 
-	virtual ~Rectangle() {
+	virtual ~Circle() {
 		delete shape;
 	}
 
 	void createShape() {
-		shape = new RectangleShape();
-		shape->setSize(size);
+		shape = new CircleShape();
+		shape->setRadius(radius);
 		shape->setFillColor(color);
 		shape->setPosition(position);
 	}
 
-    virtual void draw(RenderWindow* window) override;
+	virtual void draw(RenderWindow* window) override;
 
 	virtual void move(Vector2f velocity) override;
 

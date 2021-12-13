@@ -4,6 +4,7 @@
 
 #include "Figure.h"
 #include "Rectangle.h"
+#include "Circle.h"
 
 using namespace std;
 
@@ -30,6 +31,8 @@ public:
 
 	void addRandFigure();
 
+	void swapCurrent();
+
 private:
 	vector<IFigure*> _figures;
 	Vector2u screenSize;
@@ -37,5 +40,9 @@ private:
 	void resolveScreenBounds();
 
 	void resolveFiguresBounds(Vector2f lastMovementVelocity);
+
+	Color generateRandColor();
+
+	Vector2f getScreenCenter();
 };
 

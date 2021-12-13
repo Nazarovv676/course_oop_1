@@ -43,11 +43,51 @@ void Controller::setScreenSize(Vector2u size)
 
 void Controller::addRandFigure()
 {
-	_figures.push_back(new Rectangle(
-		Vector2f(FIGURE_SIZE, FIGURE_SIZE),
-		Vector2f(screenSize.x / 2 - FIGURE_SIZE / 2, screenSize.y / 2 - FIGURE_SIZE / 2),
-		Color(rand() % 255, rand() % 255, rand() % 255)
-	));
+	IFigure* figure;
+	switch (rand() % 2)
+	{
+	case 0:
+		figure = new Rectangle(
+			Vector2f(FIGURE_SIZE, FIGURE_SIZE),
+			getScreenCenter(),
+			generateRandColor()
+		);
+		break;
+
+	case 1:
+		figure = new Circle(
+			FIGURE_SIZE / 2,
+			getScreenCenter(),
+			generateRandColor()
+		);
+		break;
+
+	default:
+		break;
+	}
+
+	_figures.push_back(figure);
+}
+
+void Controller::swapCurrent()
+{
+	IFigure* figure = nullptr;
+	IFigure* current = currentFigure();
+	switch (rand() % 2)
+	{
+	case 0:
+		figure = new Rectangle(current);
+		break;
+
+	case 1:
+		figure = new Circle(current);
+		break;
+
+	default:
+		break;
+	}
+	_figures.back() = figure;
+	delete current;
 }
 
 void Controller::resolveScreenBounds()
@@ -119,4 +159,14 @@ void Controller::resolveFiguresBounds(Vector2f lastMovementVelocity)
 			currentFigure()->onTouch();
 		}
 	}
+}
+
+Color Controller::generateRandColor()
+{
+	return Color(rand() % 255, rand() % 255, rand() % 255);
+}
+
+Vector2f Controller::getScreenCenter()
+{
+	return Vector2f(screenSize.x / 2 - FIGURE_SIZE / 2, screenSize.y / 2 - FIGURE_SIZE / 2);
 }

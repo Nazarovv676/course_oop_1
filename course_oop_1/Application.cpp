@@ -39,6 +39,9 @@ void Application::run()
 				if (event.key.code == Keyboard::R) {
 					controller.addRandFigure();
 				}
+				if (event.key.code == Keyboard::S) {
+					controller.swapCurrent();
+				}
 				break;
 
 			default:
@@ -46,37 +49,24 @@ void Application::run()
 			}
 		}
 
-		// Movement
-
 		velocity.x = 0.f;
 		velocity.y = 0.f;
-
 		if (Keyboard::isKeyPressed(Keyboard::Up)) {
 			velocity.y += -movementSpeed * dt;
 		}
-
 		if (Keyboard::isKeyPressed(Keyboard::Down)) {
 			velocity.y += movementSpeed * dt;
 		}
-
 		if (Keyboard::isKeyPressed(Keyboard::Left)) {
 			velocity.x += -movementSpeed * dt;
 		}
-
 		if (Keyboard::isKeyPressed(Keyboard::Right)) {
 			velocity.x += movementSpeed * dt;
 		}
-
 		controller.maybeMove(velocity);
 
-		// Collision
-
-		// Render
-
 		window.clear();
-
 		controller.draw(&window);
-
 		window.display();
 	}
 }
