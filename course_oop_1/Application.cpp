@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "Rectangle.h"
+#include <deque>
 
 using namespace std;
 
@@ -23,6 +24,10 @@ void Application::run()
 	Clock dt_clock;
 
 	Vector2f velocity;
+
+	deque<Vector2f> lastTrajectory;
+	bool isRecording = false;
+	bool isPlaying = false;
 
 	while (window.isOpen()) {
 		dt = dt_clock.restart().asSeconds();
@@ -48,6 +53,21 @@ void Application::run()
 				if (event.key.code == Keyboard::D) {
 					controller.deleteCurrent();
 				}
+				if (event.key.code == Keyboard::R) {
+					if (!isRecording) {
+						lastTrajectory.clear();
+					}
+					isRecording = !isRecording;
+				}
+				if (event.key.code == Keyboard::E) {
+					if (isRecording) {
+						isRecording = false;
+					}
+					if (isPlaying) {
+						lastTrajectory.clear();
+					}
+					isPlaying = !isPlaying;
+				}
 				break;
 
 			default:
@@ -55,20 +75,38 @@ void Application::run()
 			}
 		}
 
-		velocity.x = 0.f;
-		velocity.y = 0.f;
-		if (Keyboard::isKeyPressed(Keyboard::Up)) {
-			velocity.y += -movementSpeed * dt;
+		if (!isPlaying) {
+			velocity.x = 0.f;
+			velocity.y = 0.f;
+			if (Keyboard::isKeyPressed(Keyboard::Up)) {
+				velocity.y += -movementSpeed * dt;
+			}
+			if (Keyboard::isKeyPressed(Keyboard::Down)) {
+				velocity.y += movementSpeed * dt;
+			}
+			if (Keyboard::isKeyPressed(Keyboard::Left)) {
+				velocity.x += -movementSpeed * dt;
+			}
+			if (Keyboard::isKeyPressed(Keyboard::Right)) {
+				velocity.x += movementSpeed * dt;
+			}
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Down)) {
-			velocity.y += movementSpeed * dt;
+
+		if (isPlaying) {
+			if (lastTrajectory.size() == 0) {
+				isPlaying = false;
+			}
+			else {
+				velocity = lastTrajectory.front();
+				lastTrajectory.pop_front();
+			}
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Left)) {
-			velocity.x += -movementSpeed * dt;
+
+
+		if (isRecording) {
+			lastTrajectory.push_back(velocity);
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Right)) {
-			velocity.x += movementSpeed * dt;
-		}
+
 		controller.maybeMove(velocity);
 
 		window.clear();
