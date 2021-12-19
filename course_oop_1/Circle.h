@@ -7,7 +7,7 @@
 
 using namespace sf;
 
-class Circle : public IFigure
+class Circle : virtual public IFigure
 {
 	float radius;
 	Color color;

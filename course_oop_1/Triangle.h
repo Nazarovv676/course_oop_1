@@ -6,7 +6,7 @@
 
 using namespace sf;
 
-class Triangle : public IFigure
+class Triangle : virtual public IFigure
 {
 	float radius;
 	Color color;
