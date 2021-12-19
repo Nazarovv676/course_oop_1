@@ -37,7 +37,7 @@ void Application::run()
 
 			case Event::KeyPressed: 
 				if (event.key.code == Keyboard::C) {
-					controller.changeRandomly();
+					controller.swapCurrent();
 				}
 				if (event.key.code == Keyboard::A) {
 					controller.addRandomly();

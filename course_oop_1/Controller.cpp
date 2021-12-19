@@ -24,7 +24,7 @@ void Controller::draw(RenderWindow* window)
 
 bool Controller::hasFigures()
 {
-	return _figures.size() > 0 ;
+	return _figures.size() > 0;
 }
 
 void Controller::maybeMove(Vector2f velocity)
@@ -39,44 +39,6 @@ void Controller::maybeMove(Vector2f velocity)
 void Controller::setScreenSize(Vector2u size)
 {
 	screenSize = size;
-}
-
-void Controller::changeRandomly()
-{
-	IFigure* figure = nullptr;
-	switch (rand() % 2)
-	{
-	case 0:
-		figure = new Rectangle(
-			Vector2f(FIGURE_SIZE, FIGURE_SIZE),
-			getScreenCenter(),
-			generateRandColor()
-		);
-		break;
-
-	case 1:
-		figure = new Circle(
-			FIGURE_SIZE / 2,
-			getScreenCenter(),
-			generateRandColor()
-		);
-		break;
-
-	case 2:
-		figure = new Triangle(
-			FIGURE_SIZE / 2,
-			getScreenCenter(),
-			generateRandColor()
-		);
-		break;
-
-	default:
-		break;
-	}
-	if (_figures.size() > 0)
-		_figures.back() = figure;
-	else
-		_figures.push_back(figure);
 }
 
 void Controller::addRandomly()

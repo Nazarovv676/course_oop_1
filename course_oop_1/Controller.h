@@ -30,8 +30,6 @@ public:
 
 	void setScreenSize(Vector2u size);
 
-	void changeRandomly();
-
 	void addRandomly();
 
 	void swapCurrent();
