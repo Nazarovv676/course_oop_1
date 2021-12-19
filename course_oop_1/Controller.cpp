@@ -148,17 +148,20 @@ void Controller::resolveScreenBounds()
 {
 	Shape* shape = currentFigure()->getShape();
 
-	if (shape->getPosition().x < 0.f) {
-		shape->setPosition(0.f, shape->getPosition().y);
+	float xDimHalf = currentFigure()->getSize().x / 2;
+	float yDimHalf = currentFigure()->getSize().y / 2;
+
+	if (shape->getPosition().x < -xDimHalf) {
+		shape->setPosition(screenSize.x - xDimHalf, shape->getPosition().y);
 	}
-	if (shape->getPosition().y < 0.f) {
-		shape->setPosition(shape->getPosition().x, 0.f);
+	if (shape->getPosition().y < -yDimHalf) {
+		shape->setPosition(shape->getPosition().x, screenSize.y - yDimHalf);
 	}
-	if (shape->getPosition().x > screenSize.x - shape->getGlobalBounds().width) {
-		shape->setPosition(screenSize.x - shape->getGlobalBounds().width, shape->getPosition().y);
+	if (shape->getPosition().x + xDimHalf > screenSize.x) {
+		shape->setPosition(-xDimHalf, shape->getPosition().y);
 	}
-	if (shape->getPosition().y > screenSize.y - shape->getGlobalBounds().height) {
-		shape->setPosition(shape->getPosition().x, screenSize.y - shape->getGlobalBounds().height);
+	if (shape->getPosition().y + yDimHalf > screenSize.y) {
+		shape->setPosition(shape->getPosition().x, -yDimHalf);
 	}
 }
 
