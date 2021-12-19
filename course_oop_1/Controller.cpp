@@ -1,6 +1,6 @@
 #include "Controller.h"
 
-const unsigned FIGURE_SIZE = 30;
+const unsigned FIGURE_SIZE = 50;
 
 IFigure* Controller::currentFigure()
 {

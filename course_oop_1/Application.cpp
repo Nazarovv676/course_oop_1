@@ -7,8 +7,8 @@ using namespace std;
 
 void Application::run()
 {
-	const unsigned WINDOW_WIDTH = 500;
-	const unsigned WINDOW_HEIGHT = 500;
+	const unsigned WINDOW_WIDTH = 1000;
+	const unsigned WINDOW_HEIGHT = 1000;
 
 	const int framerateLimit = 120;
 
