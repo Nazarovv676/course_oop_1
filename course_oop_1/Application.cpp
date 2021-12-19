@@ -8,12 +8,12 @@ using namespace std;
 
 void Application::run()
 {
-	const unsigned WINDOW_WIDTH = 1000;
-	const unsigned WINDOW_HEIGHT = 1000;
+	const unsigned WINDOW_WIDTH = 700;
+	const unsigned WINDOW_HEIGHT = 700;
 
 	const int framerateLimit = 120;
 
-	const float movementSpeed = 100.f;
+	const float movementSpeed = 200.f;
 
 	RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML Application", Style::Close);
 	window.setFramerateLimit(framerateLimit);
