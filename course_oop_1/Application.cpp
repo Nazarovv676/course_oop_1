@@ -36,11 +36,14 @@ void Application::run()
 				break;
 
 			case Event::KeyPressed: 
-				if (event.key.code == Keyboard::R) {
+				if (event.key.code == Keyboard::A) {
 					controller.addRandFigure();
 				}
 				if (event.key.code == Keyboard::S) {
 					controller.swapCurrent();
+				}
+				if (event.key.code == Keyboard::D) {
+					controller.deleteCurrent();
 				}
 				break;
 

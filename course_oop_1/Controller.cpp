@@ -102,6 +102,13 @@ void Controller::swapCurrent()
 	delete current;
 }
 
+void Controller::deleteCurrent()
+{
+	if (hasFigures()) {
+		_figures.pop_back();
+	}
+}
+
 void Controller::resolveScreenBounds()
 {
 	Shape* shape = currentFigure()->getShape();

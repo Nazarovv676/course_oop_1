@@ -34,6 +34,8 @@ public:
 
 	void swapCurrent();
 
+	void deleteCurrent();
+
 private:
 	vector<IFigure*> _figures;
 	Vector2u screenSize;
