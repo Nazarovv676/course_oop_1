@@ -106,6 +106,13 @@ void Controller::changeColorRandomly()
 	currentFigure()->changeColorRandomly();
 }
 
+void Controller::deleteCurrent()
+{
+	if (hasFigures()) {
+		_figures.pop_back();
+	}
+}
+
 void Controller::resolveScreenBounds()
 {
 	Shape* shape = currentFigure()->getShape();

@@ -36,6 +36,8 @@ public:
 
 	void changeColorRandomly();
 
+	void deleteCurrent();
+
 private:
 	vector<IFigure*> _figures;
 	Vector2u screenSize;
